@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+    /* Font Sizes */
+    --text-body: 16px;
+    --text-subtitle: 24px;
+    --text-heading: 48px;
+    --text-hero: 64px;
+
+    /* Fonts */
+    --font-Quintessential: "Quintessential", serif;
+    --font-Red-Hat: "Red Hat Text", sans-serif;
+
+    /* Font Weights */
+    /* --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700; */
+}
