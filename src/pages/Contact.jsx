@@ -3,9 +3,11 @@ import ContactUs from '../components/ContactUs'
 
 function Contact() {
   return (
-      <>
-      <ContactUs/>
-      </>
+    <>
+      <div className='pt-17.5'>
+        <ContactUs />
+      </div>
+    </>
   )
 }
 

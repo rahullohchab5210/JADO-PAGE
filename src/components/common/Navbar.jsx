@@ -1,16 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from './Btn';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
     const [menuOpen, setMenuOpen] = useState(null);
+    const [isScrolled, setIsScrolled] = useState(false);
     const navlinks = ["about", "services", "subject", "contact"];
 
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 10);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+
     return (
-        <div className='py-[20px]'>
-            <div className='max-w-[1140px] px-3 mx-auto'>
+        <div className={`py-5 fixed top-0 z-999 w-full ${isScrolled ? "bg-white shadow-lg" : "bg-transparent"}`}>
+            <div className='max-w-285 px-3 mx-auto'>
                 <div className='flex justify-between items-center'>
-                    <Link to={"/"} className=' '><svg className='max-lg:w-full' width="134" height="50" viewBox="0 0 134 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <Link to={"/"} onClick={() => setMenuOpen(null)} className='z-2'><svg className='max-lg:w-full' width="134" height="50" viewBox="0 0 134 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15.9668 32.3051C24.729 32.3051 31.8321 25.0734 31.8321 16.1526C31.8321 7.23175 24.729 0 15.9668 0C7.20462 0 0.101484 7.23175 0.101484 16.1526C0.101484 25.0734 7.20462 32.3051 15.9668 32.3051Z" fill="#EF7D00" />
                         <path d="M18.658 4.81018V20.538C18.658 25.2525 16.6434 27.1812 13.2756 27.1812C11.8384 27.2157 10.4233 26.8162 9.20872 26.0332C8.89928 25.2055 8.78096 24.3165 8.86292 23.4348C10.0328 24.4039 11.4894 24.9432 12.9974 24.9655C15.2526 24.9655 16.2863 23.5381 16.2863 20.6107V4.88289C17.4853 4.88289 18.346 4.85228 18.658 4.83315V4.81018Z" fill="#FEFEFE" />
                         <path d="M50.024 32.3051C58.7862 32.3051 65.8893 25.0734 65.8893 16.1526C65.8893 7.23175 58.7862 0 50.024 0C41.2618 0 34.1587 7.23175 34.1587 16.1526C34.1587 25.0734 41.2618 32.3051 50.024 32.3051Z" fill="#EF7D00" />
@@ -39,47 +49,40 @@ function Navbar() {
                     </svg>
                     </Link>
 
-
                     <div className='flex items-center    '>
-                        <div className='pr-[48px] max-lg:pr-0'>
-                            <div className={`flex gap-[48px]  items-center max-lg:flex-col max-lg:items-center max-lg:justify-center max-[1024px]:fixed max-[1024px]:bg-[#EF7D00] max-[1024px]:backdrop-blur-[10px] max-[1024px]:h-full max-[1024px]:w-full max-[1024px]:top-0 max-[1024px]:transition-all max-[1024px]:duration-300 max-[1024px]:ease-linear z-1 ${menuOpen === "show" ? "max-[1024px]:right-0" : "max-[1024px]:-right-full"}`}>
+                        <div className='pr-12 max-lg:pr-0'>
+                            <div className={`flex gap-12  items-center max-lg:flex-col max-lg:items-center max-lg:justify-center max-[1024px]:fixed max-[1024px]:bg-blur max-[1024px]:bg-blur max-[1024px]:backdrop-blur-[30px] max-[1024px]:h-full max-[1024px]:w-full max-[1024px]:top-0 max-[1024px]:transition-all max-[1024px]:duration-300 max-[1024px]:ease-linear z-1 ${menuOpen === "show" ? "max-[1024px]:right-0" : "max-[1024px]:-right-full"}`}>
                                 {navlinks.map((link, i) => {
-                                    return <a key={i} href={`/${link}`} className=' font-Red-Hat font-normal text-body leading-[150%] tracking-[0%] text-[#4C4C4C] relative inline-block group'>
+                                    return <a key={i} href={`/${link}`} className=' font-Red-Hat font-normal text-body leading-[150%] tracking-[0%] text-[#4C4C4C] max-lg:text-[#EF7D00] max-lg:text-subtitle relative inline-block group'>
                                         {
-                                        link === "about"
-                                            ? "About us"
-                                            : link === "subject"
-                                                ? "Subject Areas"
-                                                : link === "contact"
-                                                    ? "Contact us"
-                                                    : link === "services"
-                                                        ? "Services"
-                                                        : link
+                                            link === "about"
+                                                ? "About us"
+                                                : link === "subject"
+                                                    ? "Subject Areas"
+                                                    : link === "contact"
+                                                        ? "Contact us"
+                                                        : link === "services"
+                                                            ? "Services"
+                                                            : link
                                         }
 
-                                        <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#4C4C4C] transition-all duration-300 group-hover:w-full rounded"></span>
+                                        <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#4C4C4C] max-lg:bg-[#EF7D00] transition-all duration-300 group-hover:w-full rounded"></span>
                                     </a>
-
-
-                                    
-
                                 })}
-
+                                <Button className="hover:text-white hover:bg-black  transition-all duration-300   max-lg:bg-[#EF7D00] max-lg:border-transparent max-lg:text-white max-lg:hover:bg-white max-lg:hover:text-[#EF7D00]"
+                                    text={"Get a Quote"}
+                                />
                             </div>
                         </div>
-                        <Button className="hover:text-white hover:bg-black  transition-all duration-300 max-lg:mr-[3px] max-lg:ml-[20px] "
-                            text={"Get a Quote"}
-                        />
                         <button
                             onClick={() => setMenuOpen(menuOpen === "show" ? null : "show")}
-                            className="flex flex-col justify-between h-5.5 w-7 bg-transparent border-0 ml-auto z-5 relative lg:hidden"
+                            className="relative flex flex-col justify-center items-center h-6 w-7 ml-auto z-50 cursor-pointer lg:hidden"
                         >
-                            <span className={`block w-full h-0.75 bg-[#01C8FF] rounded-sm transition-all duration-300 ease-in-out transform ${menuOpen === "show" ? "rotate-45 origin-left" : ""}`}></span>
-                            <span className={`block w-full h-0.75 bg-[#01C8FF] rounded-sm transition-all duration-300 ease-in-out ${menuOpen === "show" ? "opacity-0 -translate-x-10" : ""}`}></span>
-                            <span className={`block w-full h-0.75 bg-[#01C8FF] rounded-sm transition-all duration-300 ease-in-out transform ${menuOpen === "show" ? "-rotate-45 origin-left" : ""}`}></span>
+                            <span className={`absolute h-0.75 w-full bg-black rounded transition-all duration-100 ${menuOpen === "show" ? "rotate-45 top-1/2 -translate-y-1/2" : "top-0"}`}></span>
+                            <span className={`absolute h-0.75 w-full bg-black rounded transition-all duration-100 ${menuOpen === "show" ? "opacity-0" : "top-1/2 -translate-y-1/2"}`}></span>
+                            <span className={`absolute h-0.75 w-full bg-black rounded transition-all duration-100 ${menuOpen === "show" ? "-rotate-45 top-1/2 -translate-y-1/2" : "bottom-0"}`}></span>
                         </button>
                     </div>
-
                 </div>
             </div>
         </div>

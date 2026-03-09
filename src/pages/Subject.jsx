@@ -4,7 +4,9 @@ import SubjectAreas from '../components/SubjectAreas'
 function Subject() {
     return (
         <>
-            <SubjectAreas />
+            <div className='pt-25'>
+                <SubjectAreas />
+            </div>
         </>
     )
 }

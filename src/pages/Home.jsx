@@ -6,14 +6,14 @@ import SubjectAreas from '../components/SubjectAreas'
 import ContactUs from '../components/ContactUs'
 
 function Home() {
-    return (
-      <> 
-            <HeroSection />
-            <OurServices />
-            <AboutUs />
-            <SubjectAreas />
-            <ContactUs />
-        </>
+  return (
+    <>
+      <HeroSection />
+      <OurServices />
+      <AboutUs />
+      <SubjectAreas />
+      <ContactUs />
+    </>
   )
 }
 

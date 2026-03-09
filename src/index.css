@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+
+
 @theme {
     /* Font Sizes */
     --text-body: 16px;

@@ -3,9 +3,11 @@ import AboutUs from '../components/AboutUs'
 
 function About() {
   return (
-      <>
-      <AboutUs/>
-      </>
+    <>
+      <div className='pt-25'>
+        <AboutUs />
+      </div>
+    </>
   )
 }
 
